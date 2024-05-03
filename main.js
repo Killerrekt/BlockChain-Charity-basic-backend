@@ -22,12 +22,10 @@ app.post("/add-org", async (req, res) => {
     await newData.save();
     return res.status(201).json({ message: "The entry have been created" });
   } catch (err) {
-    res
-      .status(400)
-      .json({
-        message: "something went wrong while entering the data",
-        error: err,
-      });
+    res.status(400).json({
+      message: "something went wrong while entering the data",
+      error: err,
+    });
   }
 });
 
@@ -38,9 +36,9 @@ app.get("/get", async (req, res) => {
     .json({ message: "successfully executed", data: result });
 });
 
-app.get("/get/:name", async (req, res) => {
-  const name = req.params.name;
-  var result = await data.findOne({ name: name });
+app.get("/get/:wallet", async (req, res) => {
+  const wallet = req.params.wallet;
+  var result = await data.find({ walletAddress: wallet });
   return res
     .status(201)
     .json({ message: "successfully executed", data: result });
