@@ -17,8 +17,20 @@ app.use(express.json());
 
 app.post("/add-org", async (req, res) => {
   try {
-    const { walletAddress, name, description, target } = req.body;
-    const newData = new data({ walletAddress, name, description, target });
+    var { walletAddress, name, description, target, completed, deadline } =
+      req.body;
+    console.log(!completed);
+    if (!completed) {
+      completed = false;
+    }
+    const newData = new data({
+      walletAddress,
+      name,
+      description,
+      target,
+      completed,
+      deadline,
+    });
     await newData.save();
     return res.status(201).json({ message: "The entry have been created" });
   } catch (err) {
@@ -42,6 +54,13 @@ app.get("/get/:wallet", async (req, res) => {
   return res
     .status(201)
     .json({ message: "successfully executed", data: result });
+});
+
+app.get("/completed", async (req, res) => {
+  var results = await data.find({ completed: true });
+  return res
+    .status(201)
+    .json({ message: "successfully executed", data: results });
 });
 
 app.get("/ping", (req, res) => {

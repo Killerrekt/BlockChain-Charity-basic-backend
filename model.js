@@ -18,6 +18,14 @@ const Schema = new mongoose.Schema(
       type: mongoose.Types.Decimal128,
       required: true,
     },
+    completed: {
+      type: Boolean,
+      required: true,
+    },
+    deadline: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
