@@ -15,7 +15,7 @@ const Schema = new mongoose.Schema(
       required: true,
     },
     target: {
-      type: mongoose.Types.Decimal128,
+      type: String,
       required: true,
     },
     completed: {
@@ -23,7 +23,7 @@ const Schema = new mongoose.Schema(
       required: true,
     },
     deadline: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
