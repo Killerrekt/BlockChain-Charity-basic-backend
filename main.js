@@ -41,6 +41,17 @@ app.post("/add-org", async (req, res) => {
   }
 });
 
+app.post("/update", async (req, res) => {
+  var { walletAddress, description, target } = req.body;
+  var results = await data.updateOne(
+    { walletAddress: walletAddress, description: description, target: target },
+    { completed: true }
+  );
+  return res
+    .status(201)
+    .json({ message: "successfully executed", data: results });
+});
+
 app.get("/get", async (req, res) => {
   var result = await data.find({});
   return res
