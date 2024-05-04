@@ -17,15 +17,13 @@ app.use(express.json());
 
 app.post("/add-org", async (req, res) => {
   try {
-    var { walletAddress, name, description, target, completed, deadline } =
-      req.body;
+    var { walletAddress, description, target, completed, deadline } = req.body;
     console.log(!completed);
     if (!completed) {
       completed = false;
     }
     const newData = new data({
       walletAddress,
-      name,
       description,
       target,
       completed,

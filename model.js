@@ -6,10 +6,10 @@ const Schema = new mongoose.Schema(
       //unique: true,
       required: true,
     },
-    name: {
+    /*name: {
       type: String,
       required: true,
-    },
+    },*/
     description: {
       type: String,
       required: true,
