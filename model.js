@@ -26,6 +26,10 @@ const Schema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    approved: {
+      type: Boolean,
+      required: true,
+    },
   },
   {
     timestamps: true,

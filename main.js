@@ -19,16 +19,19 @@ app.use(cors());
 
 app.post("/add-org", async (req, res) => {
   try {
-    var { walletAddress, description, target, completed, deadline } = req.body;
+    var { walletAddress, description, target, completed, deadline, approved } =
+      req.body;
     console.log(!completed);
     if (!completed) {
       completed = false;
+      approved = false;
     }
     const newData = new data({
       walletAddress,
       description,
       target,
       completed,
+      approved,
       deadline,
     });
     await newData.save();
@@ -41,11 +44,22 @@ app.post("/add-org", async (req, res) => {
   }
 });
 
-app.post("/update", async (req, res) => {
+app.post("/update/complete", async (req, res) => {
   var { walletAddress, description, target } = req.body;
   var results = await data.updateOne(
     { walletAddress: walletAddress, description: description, target: target },
     { completed: true }
+  );
+  return res
+    .status(201)
+    .json({ message: "successfully executed", data: results });
+});
+
+app.post("/update/approve", async (req, res) => {
+  var { walletAddress, description, target } = req.body;
+  var results = await data.updateOne(
+    { walletAddress: walletAddress, description: description, target: target },
+    { approved: true }
   );
   return res
     .status(201)
