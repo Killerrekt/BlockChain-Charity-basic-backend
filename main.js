@@ -95,6 +95,13 @@ app.get("/approved", async (req, res) => {
     .json({ message: "successfully executed", data: results });
 });
 
+app.get("/unapproved", async (req, res) => {
+  var results = await data.find({ approved: false });
+  return res
+    .status(201)
+    .json({ message: "successfully executed", data: results });
+});
+
 app.get("/ping", (req, res) => {
   res.status(200).json({ message: "Pong", status: "server is up and running" });
 });
