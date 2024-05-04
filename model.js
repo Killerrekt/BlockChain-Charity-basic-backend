@@ -3,7 +3,7 @@ const Schema = new mongoose.Schema(
   {
     walletAddress: {
       type: String,
-      unique: true,
+      //unique: true,
       required: true,
     },
     name: {
